@@ -1,0 +1,35 @@
+# Model configuration
+model:
+  name: "codellama/CodeLlama-7b-hf"  # Base model to use
+  max_length: 2048
+  device: "cuda"  # or "cpu"
+
+# Training configuration
+training:
+  num_epochs: 3
+  batch_size: 8
+  learning_rate: 5e-5
+  warmup_steps: 100
+  max_grad_norm: 1.0
+  gradient_accumulation_steps: 4
+  fp16: true  # Use mixed precision training
+
+# Data configuration
+data:
+  train_file: "data/train.json"
+  val_file: "data/val.json"
+  test_file: "data/test.json"
+  max_samples: null  # Set to null to use all samples
+
+# Logging configuration
+logging:
+  use_wandb: true
+  wandb_project: "swe-bench-model"
+  log_every_n_steps: 10
+  eval_every_n_steps: 100
+
+# Output configuration
+output:
+  dir: "outputs"
+  save_every_n_steps: 1000
+  max_checkpoints: 3 
